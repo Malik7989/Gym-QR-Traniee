@@ -8,11 +8,11 @@ const workoutVideo = document.getElementById("workout-video");
 const uploadInput = document.getElementById("upload-image");
 
 const equipmentVideos = {
-  machine1: "https://www.youtube.com/embed/video1",
-  machine2: "https://www.youtube.com/embed/video2",
-  machine3: "https://www.youtube.com/embed/video3",
-  machine4: "https://www.youtube.com/embed/video4",
-  machine5: "https://www.youtube.com/embed/video5",
+  machine1: "https://www.youtube.com/embed/K6I24WgiiPw",
+  machine2: "https://www.youtube.com/embed/4Y2ZdHCOXok",
+  machine3: "https://www.youtube.com/embed/SALxEARiMkw",
+  machine4: "https://www.youtube.com/embed/0mY8dIGDneE",
+  machine5: "https://www.youtube.com/embed/dCtwWNTnOq4",
 };
 
 async function startScanner() {
