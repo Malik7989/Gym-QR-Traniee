@@ -1,0 +1,102 @@
+/* Base Styles */
+body { 
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    background: linear-gradient(45deg, #1e3c72, #2a5298);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header & Navigation */
+header {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+h1 {
+    font-size: 2.5em;
+    margin: 0;
+    animation: fadeIn 1s ease-in-out;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    font-size: 1.2em;
+    color: black;
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 5px 10px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    transform: scale(1.05);
+}
+
+/* Main Content Sections */
+section {
+    margin: 40px auto;
+    max-width: 800px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+video {
+    width: 100%; 
+    max-width: 600px; 
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    animation: slideUp 1s ease-in-out;
+}
+
+canvas { 
+    display: none; 
+}
+
+#qr-video { 
+    border: 2px solid #fff; 
+}
+
+/* Equipment Info & Video Container */
+#equipment-info {
+    margin-top: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#video-container {
+    display: none;
+    margin-top: 20px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out;
+}
+
+iframe {
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 560px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}

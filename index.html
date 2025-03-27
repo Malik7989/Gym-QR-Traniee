@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gym Trainer QR Scanner</title>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Gym QR Trainee</h1>
+      <nav style="background-color: #f0f0f0; padding: 10px">
+        <a href="#home" style="margin-right: 15px">Home</a>
+        <a href="#about" style="margin-right: 15px">About Us</a>
+        <a href="#scanner" style="margin-right: 15px">Scanner</a>
+        <a href="#contact">Contact Us</a>
+      </nav>
+    </header>
+    <main>
+      <section id="home">
+        <h2>Welcome to Gym Trainer QR Scanner</h2>
+        <p>
+          Discover our innovative gym equipment scanning app that instantly
+          provides you with workout guides. Navigate through the sections to
+          learn more.
+        </p>
+      </section>
+      <section id="about">
+        <h2>About Us</h2>
+        <p>
+          We are a team of fitness enthusiasts and tech experts developing
+          solutions to enhance your workout experience. Our mission is to merge
+          technology and fitness seamlessly.
+        </p>
+      </section>
+      <section id="scanner">
+        <h2>Scan Gym Equipment QR Code</h2>
+        <video id="qr-video" autoplay></video>
+        <canvas id="qr-canvas"></canvas>
+        <p id="equipment-info">Scan a QR code to get workout instructions.</p>
+        <!-- Option to upload an image -->
+        <div style="margin-top: 15px">
+          <label for="upload-image">Or upload an image:</label>
+          <input type="file" id="upload-image" accept="image/*" />
+        </div>
+      </section>
+      <section id="guide">
+        <h2>Workout Guide</h2>
+        <div id="video-container">
+          <iframe
+            id="workout-video"
+            width="560"
+            height="315"
+            src=""
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </section>
+      <section id="contact">
+        <h2>Contact Us</h2>
+        <p>
+          For inquiries, please email us at
+          <a href="mailto:contact@gymtrainer.com">contact@gymtrainer.com</a> or
+          call us at (123) 456-7890.
+        </p>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
