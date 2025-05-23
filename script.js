@@ -6,6 +6,10 @@ const equipmentInfo = document.getElementById("equipment-info");
 const videoContainer = document.getElementById("video-container");
 const workoutVideo = document.getElementById("workout-video");
 const uploadInput = document.getElementById("upload-image");
+const popup = document.getElementById("qr-popup");
+const closeBtn = document.querySelector(".popup-close");
+const viewGuideBtn = document.querySelector(".popup-button");
+let scanning = false;
 
 const equipmentVideos = {
   machine1: "https://www.youtube.com/embed/K6I24WgiiPw",
@@ -25,6 +29,7 @@ async function startScanner() {
     video.play();
     video.onloadedmetadata = () => {
       console.log("Camera is ready, starting scan...");
+      scanning = true;
       scanQRCode();
     };
   } catch (error) {
@@ -35,6 +40,8 @@ async function startScanner() {
 }
 
 function scanQRCode() {
+  if (!scanning) return;
+
   if (video.readyState === video.HAVE_ENOUGH_DATA) {
     canvasElement.width = video.videoWidth;
     canvasElement.height = video.videoHeight;
@@ -56,6 +63,7 @@ function scanQRCode() {
         workoutVideo.src = equipmentVideos[machineId];
         videoContainer.style.display = "block";
         equipmentInfo.innerText = `Machine: ${machineId} - Workout Guide Loaded!`;
+        showPopup();
       } else {
         equipmentInfo.innerText = "Invalid QR Code. No workout video found.";
       }
@@ -92,6 +100,7 @@ function handleUpload(event) {
           workoutVideo.src = equipmentVideos[machineId];
           videoContainer.style.display = "block";
           equipmentInfo.innerText = `Machine: ${machineId} - Workout Guide Loaded!`;
+          showPopup();
         } else {
           equipmentInfo.innerText = "Invalid QR Code. No workout video found.";
         }
@@ -108,3 +117,61 @@ function handleUpload(event) {
 }
 
 document.addEventListener("DOMContentLoaded", startScanner);
+
+// Show popup
+function showPopup() {
+  popup.style.display = "block";
+}
+
+// Close popup
+function closePopup() {
+  popup.style.display = "none";
+  scanning = true; // Resume scanning
+  scanQRCode();
+}
+
+// Event listeners
+closeBtn.addEventListener("click", closePopup);
+viewGuideBtn.addEventListener("click", function () {
+  closePopup();
+  document.getElementById("guide").scrollIntoView({ behavior: "smooth" });
+});
+
+// Close popup when clicking outside
+window.addEventListener("click", function (event) {
+  if (event.target === popup) {
+    closePopup();
+  }
+});
+
+// Safety Measures Modal
+const safetyModal = document.getElementById("safety-modal");
+const mainContent = document.getElementById("main-content");
+const safetyAccept = document.getElementById("safety-accept");
+const safetyCancel = document.getElementById("safety-cancel");
+
+// Show safety modal on page load
+document.addEventListener("DOMContentLoaded", function () {
+  safetyModal.style.display = "flex";
+  mainContent.style.display = "none";
+});
+
+// Handle safety acceptance
+safetyAccept.addEventListener("click", function () {
+  safetyModal.style.display = "none";
+  mainContent.style.display = "block";
+  // Start the scanner after safety measures are accepted
+  startScanner();
+});
+
+// Handle safety cancellation
+safetyCancel.addEventListener("click", function () {
+  window.location.href = "https://www.google.com"; // Redirect to Google or another safe website
+});
+
+// Prevent closing modal by clicking outside
+safetyModal.addEventListener("click", function (event) {
+  if (event.target === safetyModal) {
+    event.stopPropagation();
+  }
+});

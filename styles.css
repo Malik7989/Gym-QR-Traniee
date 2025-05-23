@@ -1,102 +1,527 @@
-/* Base Styles */
-body { 
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
-    background: linear-gradient(45deg, #1e3c72, #2a5298);
-    color: #fff;
+/* Modern CSS Reset */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-/* Header & Navigation */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #e74c3c;
+    --accent-color: #3498db;
+    --background-color: #f5f6fa;
+    --text-color: #2c3e50;
+    --light-gray: #ecf0f1;
+    --white: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+/* Header Styles */
 header {
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.5);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    font-size: 2.5em;
-    margin: 0;
-    animation: fadeIn 1s ease-in-out;
+header h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 nav {
-    margin-top: 10px;
+    background-color: var(--white) !important;
+    padding: 1rem 0;
+    text-align: center;
 }
 
 nav a {
-    font-size: 1.2em;
-    color: black;
+    color: var(--primary-color);
     text-decoration: none;
-    margin: 0 15px;
-    padding: 5px 10px;
-    transition: background 0.3s ease, transform 0.3s ease;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
 }
 
 nav a:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-    transform: scale(1.05);
+    background-color: var(--accent-color);
+    color: var(--white);
 }
 
-/* Main Content Sections */
+/* Main Content Styles */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
 section {
-    margin: 40px auto;
-    max-width: 800px;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    background-color: var(--white);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-video {
-    width: 100%; 
-    max-width: 600px; 
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    animation: slideUp 1s ease-in-out;
+h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
 }
 
-canvas { 
-    display: none; 
+/* Scanner Section Styles */
+#scanner {
+    text-align: center;
 }
 
-#qr-video { 
-    border: 2px solid #fff; 
-}
-
-/* Equipment Info & Video Container */
-#equipment-info {
-    margin-top: 15px;
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-#video-container {
-    display: none;
-    margin-top: 20px;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 1s ease-in-out;
-}
-
-iframe {
-    border: none;
-    border-radius: 10px;
+#qr-video {
     width: 100%;
-    max-width: 560px;
+    max-width: 500px;
+    height: auto;
+    border-radius: 8px;
+    margin: 1rem 0;
 }
 
-/* Animations */
+#qr-canvas {
+    display: none;
+}
+
+#equipment-info {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin: 1rem 0;
+}
+
+/* File Upload Styles */
+input[type="file"] {
+    padding: 0.5rem;
+    border: 2px dashed var(--accent-color);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Video Container Styles */
+#video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+#workout-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+/* Contact Section Styles */
+#contact {
+    text-align: center;
+}
+
+#contact a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#contact a:hover {
+    text-decoration: underline;
+}
+
+/* Instructions Section Styles */
+.instructions-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.instruction-step {
+    background-color: var(--light-gray);
+    padding: 1.5rem;
+    border-radius: 8px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.instruction-step:hover {
+    transform: translateY(-5px);
+}
+
+.step-number {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--accent-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.instruction-step h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.instruction-step p {
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+/* Update Responsive Design for Instructions */
+@media (max-width: 768px) {
+    .instructions-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .instruction-step {
+        padding: 1.2rem;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    nav a {
+        margin: 0;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    section {
+        padding: 1.5rem;
+    }
+}
+
+/* Popup Styles */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup-content {
+    position: relative;
+    background-color: var(--white);
+    margin: 15% auto;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: slideDown 0.3s ease-in-out;
+}
+
+.popup-close {
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.popup-close:hover {
+    color: var(--secondary-color);
+}
+
+.popup h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.popup p {
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.popup-button {
+    background-color: var(--accent-color);
+    color: var(--white);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.popup-button:hover {
+    background-color: var(--primary-color);
+}
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
-@keyframes slideUp {
-    from { transform: translateY(20px); opacity: 0; }
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
+}
+
+/* Safety Measures Modal Styles */
+.safety-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.safety-content {
+    background-color: var(--white);
+    padding: 2rem;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.3s ease-in-out;
+}
+
+.safety-content h2 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    border-bottom: none;
+}
+
+.safety-checklist {
+    margin-bottom: 2rem;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background-color: var(--light-gray);
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.checklist-item:hover {
+    transform: translateX(5px);
+}
+
+.check-icon {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+.checklist-item p {
+    margin: 0;
+    line-height: 1.4;
+    color: var(--text-color);
+}
+
+.safety-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.safety-button {
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.safety-button.accept {
+    background-color: var(--accent-color);
+    color: var(--white);
+}
+
+.safety-button.accept:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.safety-button.cancel {
+    background-color: var(--light-gray);
+    color: var(--text-color);
+}
+
+.safety-button.cancel:hover {
+    background-color: #dcdde1;
+    transform: translateY(-2px);
+}
+
+/* Scrollbar Styles for Safety Modal */
+.safety-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.safety-content::-webkit-scrollbar-track {
+    background: var(--light-gray);
+    border-radius: 4px;
+}
+
+.safety-content::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 4px;
+}
+
+.safety-content::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+/* Equipment Section Styles */
+.equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.equipment-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.equipment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.card-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+
+.card-image.strength {
+    background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+}
+
+.card-image.cardio {
+    background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+}
+
+.card-image.functional {
+    background-image: url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+}
+
+.card-image.accessories {
+    background-image: url('https://images.unsplash.com/photo-1574680096145-d05b474e2155?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+}
+
+.card-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card-content li {
+    padding: 0.5rem 0;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+}
+
+.card-content li::before {
+    content: '•';
+    color: var(--accent-color);
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+/* Responsive Design for Equipment Section */
+@media (max-width: 768px) {
+    .equipment-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .card-image {
+        height: 180px;
+    }
 }

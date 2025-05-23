@@ -6,68 +6,242 @@
     <title>Gym Trainer QR Scanner</title>
     <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
     <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <header>
-      <h1>Gym QR Trainee</h1>
-      <nav style="background-color: #f0f0f0; padding: 10px">
-        <a href="#home" style="margin-right: 15px">Home</a>
-        <a href="#about" style="margin-right: 15px">About Us</a>
-        <a href="#scanner" style="margin-right: 15px">Scanner</a>
-        <a href="#contact">Contact Us</a>
-        <a href="#eqipments"> Equipment</a>
-      </nav>
-    </header>
-    <main>
-      <section id="home">
-        <h2>Welcome to Gym Trainer QR Scanner</h2>
-        <p>
-          Discover our innovative gym equipment scanning app that instantly
-          provides you with workout guides. Navigate through the sections to
-          learn more.
-        </p>
-      </section>
-      <section id="about">
-        <h2>About Us</h2>
-        <p>
-          We are a team of fitness enthusiasts and tech experts developing
-          solutions to enhance your workout experience. Our mission is to merge
-          technology and fitness seamlessly.
-        </p>
-      </section>
-      <section id="scanner">
-        <h2>Scan Gym Equipment QR Code</h2>
-        <video id="qr-video" autoplay></video>
-        <canvas id="qr-canvas"></canvas>
-        <p id="equipment-info">Scan a QR code to get workout instructions.</p>
-        <!-- Option to upload an image -->
-        <div style="margin-top: 15px">
-          <label for="upload-image">Or upload an image:</label>
-          <input type="file" id="upload-image" accept="image/*" />
+    <!-- Safety Measures Modal -->
+    <div id="safety-modal" class="safety-modal">
+      <div class="safety-content">
+        <h2>⚠️ Important Safety Measures</h2>
+        <div class="safety-checklist">
+          <div class="checklist-item">
+            <span class="check-icon">✅</span>
+            <p>
+              Consult a doctor if you're new to working out, over 40, or have
+              health conditions
+            </p>
+          </div>
+          <div class="checklist-item">
+            <span class="check-icon">✅</span>
+            <p>Always warm up for 5-10 minutes before starting your workout</p>
+          </div>
+          <div class="checklist-item">
+            <span class="check-icon">✅</span>
+            <p>Wear proper gym attire and supportive shoes</p>
+          </div>
+          <div class="checklist-item">
+            <span class="check-icon">✅</span>
+            <p>Stay hydrated before and during your workout</p>
+          </div>
+          <div class="checklist-item">
+            <span class="check-icon">✅</span>
+            <p>Learn proper equipment usage and start with lighter weights</p>
+          </div>
+          <div class="checklist-item">
+            <span class="check-icon">✅</span>
+            <p>Use a spotter for heavy lifts and check your surroundings</p>
+          </div>
+          <div class="checklist-item">
+            <span class="check-icon">✅</span>
+            <p>
+              Stop immediately if you feel dizzy, nauseous, or experience chest
+              pain
+            </p>
+          </div>
         </div>
-      </section>
-      <section id="guide">
-        <h2>Workout Guide</h2>
-        <div id="video-container">
-          <iframe
-            id="workout-video"
-            width="560"
-            height="315"
-            src=""
-            frameborder="0"
-            allowfullscreen
-          ></iframe>
+        <div class="safety-buttons">
+          <button id="safety-cancel" class="safety-button cancel">
+            Cancel
+          </button>
+          <button id="safety-accept" class="safety-button accept">
+            I Understand
+          </button>
         </div>
-      </section>
-      <section id="contact">
-        <h2>Contact Us</h2>
-        <p>
-          For inquiries, please email us at
-          <a href="mailto:contact@gymtrainer.com">contact@gymtrainer.com</a> or
-          call us at (123) 456-7890.
-        </p>
-      </section>
-    </main>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <div id="main-content" style="display: none">
+      <header>
+        <h1>Gym QR Trainee</h1>
+        <nav>
+          <a href="#home">Home</a>
+          <a href="#about">About Us</a>
+          <a href="#scanner">Scanner</a>
+          <a href="#equipment">Popular</a>
+          <a href="#contact">Contact Us</a>
+        </nav>
+      </header>
+      <main>
+        <section id="home">
+          <h2>Welcome to Gym Trainer QR Scanner</h2>
+          <p>
+            Discover our innovative gym equipment scanning app that instantly
+            provides you with workout guides. Navigate through the sections to
+            learn more.
+          </p>
+        </section>
+        <section id="about">
+          <h2>About Us</h2>
+          <p>
+            We are a team of fitness enthusiasts and tech experts developing
+            solutions to enhance your workout experience. Our mission is to
+            merge technology and fitness seamlessly.
+          </p>
+        </section>
+        <section id="scanner">
+          <h2>Scan Gym Equipment QR Code</h2>
+          <div class="scanner-container">
+            <video id="qr-video" autoplay></video>
+            <canvas id="qr-canvas"></canvas>
+            <p id="equipment-info">
+              Scan a QR code to get workout instructions.
+            </p>
+            <div class="upload-container">
+              <label for="upload-image">Or upload an image:</label>
+              <input type="file" id="upload-image" accept="image/*" />
+            </div>
+          </div>
+        </section>
+        <section id="instructions">
+          <h2>How to Use Our QR Scanner</h2>
+          <div class="instructions-container">
+            <div class="instruction-step">
+              <div class="step-number">1</div>
+              <h3>Access the Scanner</h3>
+              <p>
+                Click on the "Scanner" link in the navigation menu to access the
+                QR code scanner.
+              </p>
+            </div>
+            <div class="instruction-step">
+              <div class="step-number">2</div>
+              <h3>Allow Camera Access</h3>
+              <p>
+                When prompted, allow camera access to enable the QR code
+                scanning functionality.
+              </p>
+            </div>
+            <div class="instruction-step">
+              <div class="step-number">3</div>
+              <h3>Scan the QR Code</h3>
+              <p>
+                Point your camera at the QR code on any gym equipment. Hold
+                steady until the code is recognized.
+              </p>
+            </div>
+            <div class="instruction-step">
+              <div class="step-number">4</div>
+              <h3>View Instructions</h3>
+              <p>
+                Once scanned, you'll see detailed workout instructions and video
+                demonstrations for the equipment.
+              </p>
+            </div>
+            <div class="instruction-step">
+              <div class="step-number">5</div>
+              <h3>Alternative: Upload Image</h3>
+              <p>
+                If scanning isn't possible, you can upload a photo of the QR
+                code using the upload button.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section id="guide">
+          <h2>Workout Guide</h2>
+          <div id="video-container">
+            <iframe
+              id="workout-video"
+              src=""
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </section>
+        <section id="equipment">
+          <h2>Popular Gym Equipment</h2>
+          <div class="equipment-grid">
+            <!-- Strength Training Cards -->
+            <div class="equipment-card">
+              <div class="card-image strength"></div>
+              <div class="card-content">
+                <h3>Strength Training</h3>
+                <ul>
+                  <li>Adjustable Dumbbells</li>
+                  <li>Olympic Barbell (20kg)</li>
+                  <li>Weight Plates Set</li>
+                  <li>Squat Rack</li>
+                  <li>Adjustable Bench</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Cardio Equipment Cards -->
+            <div class="equipment-card">
+              <div class="card-image cardio"></div>
+              <div class="card-content">
+                <h3>Cardio Equipment</h3>
+                <ul>
+                  <li>Treadmill</li>
+                  <li>Stationary Bike</li>
+                  <li>Rowing Machine</li>
+                  <li>Jump Rope</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Functional Training Cards -->
+            <div class="equipment-card">
+              <div class="card-image functional"></div>
+              <div class="card-content">
+                <h3>Functional Training</h3>
+                <ul>
+                  <li>Kettlebells Set</li>
+                  <li>Resistance Bands</li>
+                  <li>Medicine Ball</li>
+                  <li>Foam Roller</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Essential Accessories Cards -->
+            <div class="equipment-card">
+              <div class="card-image accessories"></div>
+              <div class="card-content">
+                <h3>Essential Accessories</h3>
+                <ul>
+                  <li>Yoga Mat</li>
+                  <li>Pull-Up Bar</li>
+                  <li>Gym Flooring</li>
+                  <li>Storage Rack</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="contact">
+          <h2>Contact Us</h2>
+          <p>
+            For inquiries, please email us at
+            <a href="mailto:contact@gymtrainer.com">contact@gymtrainer.com</a>
+            or call us at (123) 456-7890.
+          </p>
+        </section>
+      </main>
+      <div id="qr-popup" class="popup">
+        <div class="popup-content">
+          <span class="popup-close">&times;</span>
+          <h3>QR Code Detected!</h3>
+          <p>
+            Please check your workout guide section for detailed instructions.
+          </p>
+          <button class="popup-button">View Guide</button>
+        </div>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
